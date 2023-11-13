@@ -8,7 +8,7 @@ from main_app.models import Post
 
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(status=1).order_by('-created_on')
     return render(request, 'home.html', {'posts': posts})
 
 
@@ -17,8 +17,7 @@ def about(request):
 
 
 def post(request):
-    posts = Post.objects.all()
-    print(posts)
+    posts = Post.objects.filter(status=1).order_by('-created_on')
     return render(request, 'post.html', {'posts': posts})
 
 

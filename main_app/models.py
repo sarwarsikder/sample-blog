@@ -10,6 +10,12 @@ def validate_video_size(value):
 
 
 class Post(models.Model):
+
+    STATUS_CHOICES = (
+        (0, 'Draft'),
+        (1, 'Publish'),
+    )
+
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
@@ -24,6 +30,7 @@ class Post(models.Model):
             validate_video_size,
         ]
     )
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
 
     def __str__(self):
         return self.title
